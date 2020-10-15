@@ -1,0 +1,23 @@
+server:
+  port: 9100
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/securitylogin?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root159
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: utf-8
+    cache: false
+    servlet:
+      content-type: text/html
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
