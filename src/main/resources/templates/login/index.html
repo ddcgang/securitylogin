@@ -3,74 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" th:href="@{/js/ele/element.css}"/>
+    <script type="text/javascript" th:src="@{/js/vue/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/js/vue/axios.js}"></script>
+    <script type="text/javascript" th:src="@{/js/qs/qs.js}"></script>
+    <script type="text/javascript" th:src="@{/js/ele/element.js}"></script>
     <style type="text/css">
-        html {
-            overflow: hidden;
-        }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-
-        }
-
-        .login-box {
-            position: absolute;
-            background-color: #fff;
-            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-            left: 50%;
-            top: 40%;
-            width: 460px;
-            height: 330px;
-            margin: -165px 0px 0px -230px;
-            z-index: 0;
-        }
-
-        .login-head {
-            background-color: #fff;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-            width: 100px;
-            margin-top: -50px;
-            margin-left: 180px;
-            border: solid 2px #fff;
-            border-radius: 100px;
-            overflow: hidden;
-            height: 100px;
-            z-index: 1;
-        }
-        .login-head img {
-            width: 100px;
-            height: 100px;
-        }
-        .code .el-input-group__append {
-            padding: 0px;
-            height: 38px;
-            overflow: hidden;
-            margin: 0px;
-        }
-
-        .code .el-input-group__append img {
-            position: absolute;
-            top: 0px;
-            height: 38px;
-            margin: 0px;
-            cursor: pointer;
-            border: none;
-            width: 100px;
-        }
-
-        #app {
-            margin: 30px 40px 20px 40px;
-        }
-
-        .app-t {
-            margin-top: 15px;
-        }
-
-        .app-p-l {
-            padding-left: 95px;
-        }
         .el-form-item__error {
             padding-left: 60px;
         }
@@ -78,12 +18,8 @@
         .el-input-group__prepend {
             background-color: #fff;
         }
+        .el-input-group__append{ width:100px;padding:0px;}
     </style>
-    <link rel="stylesheet" th:href="@{/js/ele/element.css}"/>
-    <script type="text/javascript" th:src="@{/js/vue/vue.js}"></script>
-    <script type="text/javascript" th:src="@{/js/vue/axios.js}"></script>
-    <script type="text/javascript" th:src="@{/js/qs/qs.js}"></script>
-    <script type="text/javascript" th:src="@{/js/ele/element.js}"></script>
 </head>
 <body>
 <div class="login-box">
@@ -131,31 +67,39 @@
 
 <script>
     var vm = new Vue({
-        el: "#app",
-        data() {
-            return {
-                user: {
-                    username: '',
-                    password: '',
-                    code: ''
+            el: "#app",
+            data() {
+                return {
+                    activeName: '0',
+                    user: {
+                        username: '',
+                        password: '',
+                        code: '',
+                        encrypt: '',
+                        publicKey: ''
+                    }
+                }
+            },
+            methods: {
+                onSubmit() {
+                    this.$refs["form"].validate((valid) => {
+                        if (valid) {
+                            axios.post('/login/check', Qs.stringify(this.user), {
+                                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                            }).then(res => {
+                                if (res.data.code) window.location.href = res.data.result.url
+                                else this.$message.error(res.data.message);
+                            }).catch(error => {
+                            })
+
+                        } else {
+                            //this.$message.error('login fail !!!');
+                        }
+                    });
                 }
             }
-        },
-        methods: {
-            onSubmit() {
-                axios.post('/login/check', Qs.stringify(this.user)).then(res => {
-                    if (res.data.code) {
-                        window.location.href = res.data.result.url;
-                    } else {
-                        //alert(res.data.message);
-                        this.$message.error(res.data.message);
-                    }
-                }).catch(error => {
-                    console.log(error)
-                })
-            }
-        }
-    });
+        })
+    ;
 </script>
 
 </body>

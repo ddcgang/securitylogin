@@ -1,0 +1,43 @@
+html {
+    overflow: hidden;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('../img/img-bg.jpg');
+
+}
+.login-box {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    left: 50%;
+    top: 40%;
+    width: 460px;
+    height: 330px;
+    margin: -165px 0px 0px -230px;
+    z-index: 0;
+}
+.login-head {
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    width: 100px;
+    margin-top: -50px;
+    margin-left: 180px;
+    border: solid 2px #fff;
+    border-radius: 100px;
+    overflow: hidden;
+    height: 100px;
+    z-index: 1;
+}
+.login-head img {
+    width: 100px;
+    height: 100px;
+}
+
+.el-input-group__append{ padding: 0px; height: 38px; overflow: hidden; margin: 0px;  }
+.el-input-group__append img{ position: absolute; top:0px; height: 38px; margin: 0px; cursor: pointer; border: none; width: 100px;}
+#app{ margin: 20px 40px 20px 40px;}
+.app-t{ margin-top: 10px;}
+.app-p-l{ padding-left: 95px;}
