@@ -39,7 +39,10 @@
             height: 100px;
             z-index: 1;
         }
-
+        .login-head img {
+            width: 100px;
+            height: 100px;
+        }
         .code .el-input-group__append {
             padding: 0px;
             height: 38px;
@@ -68,6 +71,13 @@
         .app-p-l {
             padding-left: 95px;
         }
+        .el-form-item__error {
+            padding-left: 60px;
+        }
+
+        .el-input-group__prepend {
+            background-color: #fff;
+        }
     </style>
     <link rel="stylesheet" th:href="@{/js/ele/element.css}"/>
     <script type="text/javascript" th:src="@{/js/vue/vue.js}"></script>
@@ -78,30 +88,43 @@
 <body>
 <div class="login-box">
     <div class="login-head">
-        <img src=""/>
+        <img th:src="@{/js/img/ico_head.jpg}"/>
     </div>
 
     <div id="app">
-        <div class="app-t">
-            <el-input placeholder="请输入账号" v-model="user.username" maxlength="18">
-                <template slot="prepend"><i class="el-icon-user"></i></template>
-            </el-input>
-        </div>
-        <div class="app-t">
-            <el-input placeholder="请输入密码" v-model="user.password" show-password maxlength="18">
-                <template slot="prepend"><i class="el-icon-unlock"></i></template>
-            </el-input>
-        </div>
-        <div class="app-t code">
-            <el-input placeholder="请输入图形码" v-model="user.code" maxlength="4">
-                <template slot="prepend"><i class="el-icon-picture-outline"></i></template>
-            </el-input>
-        </div>
-        <div class="app-t" style="text-align: center;">
+        <el-form ref="form" :model="user" @keyup.enter.native="onSubmit()">
+            <el-form-item prop="username"
+                          :rules="[{ required: true, message: '账号不能为空'}]">
+                <el-input placeholder="请输入账号" v-model="user.username" maxlength="18" type="username">
+                    <template slot="prepend"><i class="el-icon-user"></i></template>
+                </el-input>
+            </el-form-item>
+
+
+            <el-form-item prop="password"
+                          :rules="[{ required: true, message: '密码不能为空'}]">
+                <el-input type="password" placeholder="请输入密码" v-model="user.password" show-password maxlength="18">
+                    <template slot="prepend"><i class="el-icon-unlock"></i></template>
+                </el-input>
+            </el-form-item>
+
+
+            <el-form-item prop="code"
+                          :rules="[{ required: true, message: '图形码不能为空'}]">
+                <el-input type="code" placeholder="请输入图形码" v-model="user.code" maxlength="4">
+                    <template slot="prepend"><i class="el-icon-picture-outline"></i></template>
+                    <template slot="append">
+                        <div style="width: 100px;"></div>
+                        <img src="/login/code"
+                             onclick="this.src='/login/code?t='+new Date()"/>
+                    </template>
+                </el-input>
+            </el-form-item>
             <el-row>
                 <el-button type="primary" @click="onSubmit" style="width: 100%;">登录</el-button>
             </el-row>
-        </div>
+
+        </el-form>
 
     </div>
 </div>
@@ -124,7 +147,8 @@
                     if (res.data.code) {
                         window.location.href = res.data.result.url;
                     } else {
-                        alert(res.data.message);
+                        //alert(res.data.message);
+                        this.$message.error(res.data.message);
                     }
                 }).catch(error => {
                     console.log(error)

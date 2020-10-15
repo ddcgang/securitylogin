@@ -8,13 +8,14 @@ spring:
     password: root159
     driver-class-name: com.mysql.cj.jdbc.Driver
   thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
     mode: HTML5
-    encoding: utf-8
-    cache: false
+    encoding: UTF-8
     servlet:
       content-type: text/html
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    cache: false
   resources:
     chain:
       strategy:

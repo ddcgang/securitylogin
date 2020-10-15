@@ -22,6 +22,7 @@ public class MyVerifyFilter extends OncePerRequestFilter {
             String code = httpServletRequest.getParameter("code");
             if (!code.equals("1234")) {
                 new ResultUtil().toJson(0, "验证码错误", null, httpServletResponse);
+                return;
             }
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);

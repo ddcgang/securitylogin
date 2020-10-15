@@ -22,7 +22,9 @@ public class ModuleImpl implements ModuleService {
         return moduleMapper.selectAll();
     }
 
-    private Example example(Map<String, Map<String, Object>> map) {
-        return null;
+    @Override
+    public List<Module> findByUserName(String userName) {
+        return moduleMapper.findByUserName(userName);
     }
+
 }

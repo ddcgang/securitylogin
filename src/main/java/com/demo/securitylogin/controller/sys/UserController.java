@@ -4,6 +4,7 @@ import com.demo.securitylogin.model.sys.User;
 import com.demo.securitylogin.model.util.ResultUtil;
 import com.demo.securitylogin.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ public class UserController {
 
     @GetMapping("find")
     @ResponseBody
+    @PreAuthorize("hasPermission('/sys/user/find','r')")
     public ResultUtil find(String userName) {
         return new ResultUtil(userService.findByName(userName));
     }
