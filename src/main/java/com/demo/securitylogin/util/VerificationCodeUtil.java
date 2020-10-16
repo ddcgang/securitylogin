@@ -170,7 +170,8 @@ public class VerificationCodeUtil {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(fontPath)));
-            fontName = ge.getAvailableFontFamilyNames()[0];
+//            fontName = ge.getAvailableFontFamilyNames()[0];
+            fontName = "Algerian";
         } catch (FontFormatException e) {
             //e.printStackTrace();
         }
