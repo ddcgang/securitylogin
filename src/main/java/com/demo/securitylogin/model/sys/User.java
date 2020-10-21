@@ -1,6 +1,7 @@
 package com.demo.securitylogin.model.sys;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -24,6 +25,7 @@ public class User implements Serializable {
     private String userName;
     @Column(name = "nick")
     private String nick;
+    @JsonIgnore
     @Column(name = "pass_word")
     private String passWord;
     @Column(name = "create_time")
