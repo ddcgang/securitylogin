@@ -13,6 +13,7 @@ import java.util.Set;
 @RequestMapping("http")
 public class HttpController extends BaseController {
 
+    //https://blog.csdn.net/u011410529/article/details/50770483 http请求
     @PostMapping("add")
     public void add(@RequestBody Map<String, Object> map, @RequestHeader String token, String id) {
         System.out.println("-------------------[Raw-Json]-----------------------");
@@ -36,4 +37,5 @@ public class HttpController extends BaseController {
         System.out.println(request.getParameter("x1"));
         System.out.println(request.getParameter("x2"));
     }
+
 }
