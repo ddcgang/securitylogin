@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers()
                 .frameOptions().sameOrigin()
                 .httpStrictTransportSecurity().disable();
-        //鉴权
+/*//鉴权
         http.addFilterBefore(new MyVerifyFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests().
                 antMatchers("/login/**").permitAll().
@@ -40,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login/check")
                 .successHandler(new MyAuthenticationSuccessHandler())
                 .failureHandler(new MyAuthenticationFailureHandler())
-                .and().logout().permitAll();
+                .and().logout().permitAll();*/
+
     }
 
     @Override
