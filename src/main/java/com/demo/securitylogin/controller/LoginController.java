@@ -2,6 +2,8 @@ package com.demo.securitylogin.controller;
 
 import com.demo.securitylogin.util.SerialNumberUtil;
 import com.demo.securitylogin.util.VerificationCodeUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import java.io.IOException;
 
 @RequestMapping("login")
 @Controller
+@Api(tags = "登录")
 public class LoginController extends BaseController {
     @GetMapping("index")
     public String index() {
@@ -20,6 +23,7 @@ public class LoginController extends BaseController {
 
     @GetMapping("code")
     @ResponseBody
+    @ApiParam("验证码")
     public void randCode() throws IOException {
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");

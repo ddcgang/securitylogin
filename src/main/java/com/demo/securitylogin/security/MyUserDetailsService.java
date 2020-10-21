@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Service("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
@@ -24,9 +25,9 @@ public class MyUserDetailsService implements UserDetailsService {
     UserRoleService userRoleService;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String s) {
         User user = userService.findByName(s);
-        if (user == null) throw new MyUsernameNotFoundException("未找到用户");
+        if (!Objects.nonNull(user)) throw new MyUsernameNotFoundException("未找到用户");
         List<UserRole> userRoles = userRoleService.findByUserName(user.getUserName());
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         for (UserRole userRole : userRoles) {
