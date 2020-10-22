@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <style>
+        @page{  size : 200 mm  200 mm;  }
+        body{
+            font-family:SimHei;
+        }
+        .color{
+            color: green;
+        }
+        .pos{
+            position:absolute;
+            left:200px;
+            top:5px;
+            width: 200px;
+            font-size: 10px;
+        }
+        .table{ border-bottom: solid 1px #a6a9ad; border-right: solid 1px #a6a9ad; width: 100%;}
+        .table tr td{ border-left: solid 1px #a6a9ad; border-top: solid 1px #a6a9ad; line-height: 30px; height: 30px;}
+    </style>
+</head>
+<body>
+<img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" width="200px"/>
+<img src="${url}/ico_head.jpg" width="200px"/>
+<div class="color pos">
+    你好，${name}
+</div>
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td>序号</td>
+        <td>姓名</td>
+        <td>手机号</td>
+        <td>头像</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>${user}</td>
+        <td>134000000000</td>
+        <td><img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" width="150px"/></td>
+    </tr>
+</table>
+</body>
+</html>
