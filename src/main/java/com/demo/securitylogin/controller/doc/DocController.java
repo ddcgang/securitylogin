@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +29,7 @@ import java.util.Map;
 @RestController
 public class DocController {
 //https://www.cnblogs.com/yunfeiyang-88/p/10984740.html
+
     /**
      * iText
      *
@@ -72,7 +75,7 @@ public class DocController {
     @GetMapping("doc3")
     public void doc3() throws IOException, DocumentException {
         String DEST = "target/classes/static/doc/pdf/3/HelloWorld.pdf";
-        String HTML = PathUtil.getCurrentPath() + "static/doc/doc3.html";
+        String HTML = PathUtil.getCurrentPath() + "templates/doc/doc3.html";
         String FONT = "C:/WINDOWS/Fonts/simhei.ttf";
         Document document = new Document();
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(DEST));
@@ -93,7 +96,7 @@ public class DocController {
     @GetMapping("doc4")
     public void doc4() throws IOException, DocumentException {
         String DEST = "target/classes/static/doc/pdf/4/HelloWorld.pdf";
-        String HTML = "static/doc/doc4.html";
+        String HTML = "templates/doc/doc4.html";
         String FONT = "C:/WINDOWS/Fonts/simhei.ttf";
         Map<String, Object> data = new HashMap();
         data.put("name", "我爱中国");
@@ -103,7 +106,7 @@ public class DocController {
     }
 
     private void createPdf(String content, String dest, String font) throws IOException, DocumentException {
-        Rectangle rectangle=new Rectangle(0,0,600,400);
+        Rectangle rectangle = new Rectangle(0, 0, 600, 400);
         Document document = new Document(rectangle, 10, 10, 10, 10);
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
         document.open();
@@ -151,14 +154,16 @@ public class DocController {
     @GetMapping("doc5")
     public void doc5() throws IOException, DocumentException, com.lowagie.text.DocumentException {
         String DEST = "target/classes/static/doc/pdf/5/HelloWorld.pdf";
-        String HTML = "static/doc/doc5.html";
+        String HTML = "templates/doc/doc5.html";
         String FONT = "C:/WINDOWS/Fonts/simhei.ttf";
-        String LOGO = "file://"+PathUtil.getCurrentPath()+"static/img/ico_head.jpg";
+        String LOGO = "file://" + PathUtil.getCurrentPath() + "static/img/ico_head.jpg";
         System.out.println(LOGO);
         Map<String, Object> data = new HashMap();
         data.put("name", "我爱中国");
-        data.put("user", "s");
+        data.put("user", "用户!@#$%^*()");
         data.put("url", "/");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        data.put("date", "￥->" + sdf.format(new Date()));
         String content = freeMarkerRender5(data, HTML);
         createPdf5(content, DEST, FONT, LOGO);
     }

@@ -4,17 +4,19 @@
     <meta charset="UTF-8"/>
     <title>Title</title>
     <style>
-        @page{  size : 200 mm  200 mm;  }
+        @page{  size : 800px  460px; margin: 10px;}
+
         body{
             font-family:SimHei;
+            background-color: #aaaaaa;
         }
         .color{
             color: green;
         }
         .pos{
             position:absolute;
-            left:200px;
-            top:5px;
+            top:300px;
+            left:300px;
             width: 200px;
             font-size: 10px;
         }
@@ -25,7 +27,7 @@
 <body>
 <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" width="200px"/>
 <img src="${url}/ico_head.jpg" width="200px"/>
-<div class="color pos">
+<div class="color">
     你好，${name}
 </div>
 <table class="table" border="0" cellpadding="0" cellspacing="0" >
@@ -37,10 +39,11 @@
     </tr>
     <tr>
         <td>1</td>
-        <td>${user}</td>
+        <td>${user}￥${date}</td>
         <td>134000000000</td>
-        <td><img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" width="150px"/></td>
+        <td><img class="pos" src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" width="100px"/></td>
     </tr>
 </table>
+<div style="border:solid 1px red; background-color: #3a8ee6; line-height: 50px;">${name}</div>
 </body>
 </html>
