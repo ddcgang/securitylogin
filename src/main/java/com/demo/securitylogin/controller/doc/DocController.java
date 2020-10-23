@@ -100,7 +100,7 @@ public class DocController {
         String FONT = "C:/WINDOWS/Fonts/simhei.ttf";
         Map<String, Object> data = new HashMap();
         data.put("name", "我爱中国");
-        data.put("user", "管理员！@#￥%……&*（）-=（）");
+        data.put("user", "管理员！@#￥%……&*（）-=（）<div style='color:red;'>这是html</div>");
         String content = freeMarkerRender(data, HTML);
         createPdf(content, DEST, FONT);
     }
@@ -160,7 +160,7 @@ public class DocController {
         System.out.println(LOGO);
         Map<String, Object> data = new HashMap();
         data.put("name", "我爱中国");
-        data.put("user", "用户!@#$%^*()");
+        data.put("user", "用户!@#$%^*()<div style='color:red;'>这是html</div>");
         data.put("url", "/");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         data.put("date", "￥->" + sdf.format(new Date()));
